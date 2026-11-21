@@ -1,0 +1,1567 @@
+{
+ "$schema": "https://pin-node.com/schemas/pinnode-game.schema.json",
+ "manifestVersion": 1,
+ "ruleset": {
+  "id": "rpu-star-trek-2022",
+  "title": "bally-star-trek",
+  "name": "Star Trek 2022 (RPU)",
+  "repo": "wifijt/StarTrek2022",
+  "version": "2022.2.18",
+  "scoringVersion": 1,
+  "platform": "bally-35"
+ },
+ "players": {
+  "max": 4
+ },
+ "achievements": [
+  {
+   "id": "skill-shot",
+   "index": 0,
+   "name": "Engage",
+   "desc": "Make the skill shot: plunge into the flashing top lane",
+   "points": 5,
+   "kind": "event"
+  },
+  {
+   "id": "bally",
+   "index": 1,
+   "name": "Fascinating",
+   "desc": "Spell B-A-L-L-Y",
+   "points": 5,
+   "kind": "event"
+  },
+  {
+   "id": "drop-bank",
+   "index": 2,
+   "name": "Phasers on Target",
+   "desc": "Drop all four targets",
+   "points": 5,
+   "kind": "event"
+  },
+  {
+   "id": "drop-ladder",
+   "index": 3,
+   "name": "Full Spread",
+   "desc": "Clear the drop targets four times in one ball",
+   "points": 25,
+   "kind": "event"
+  },
+  {
+   "id": "hyperspace",
+   "index": 4,
+   "name": "Warp Factor One",
+   "desc": "Make the hyperspace loop",
+   "points": 5,
+   "kind": "event"
+  },
+  {
+   "id": "hyperspace-ladder",
+   "index": 5,
+   "name": "Warp Factor Six",
+   "desc": "Climb the hyperspace ladder to the extra ball",
+   "points": 25,
+   "kind": "event"
+  },
+  {
+   "id": "hyperspace-saucer",
+   "index": 6,
+   "name": "Beam Me Up",
+   "desc": "Hyperspace, then the saucer, while the hyperspace bonus is lit",
+   "points": 10,
+   "kind": "event"
+  },
+  {
+   "id": "doomsday-started",
+   "index": 7,
+   "name": "Planet Killer Sighted",
+   "desc": "Start The Doomsday Machine: spell B-A-L-L-Y and clear the drop targets",
+   "points": 10,
+   "kind": "event"
+  },
+  {
+   "id": "doomsday-complete",
+   "index": 8,
+   "name": "The Doomsday Machine",
+   "desc": "Destroy the planet killer",
+   "points": 50,
+   "kind": "event"
+  },
+  {
+   "id": "bonus-3x",
+   "index": 9,
+   "name": "Triple Bonus",
+   "desc": "Raise the bonus multiplier to 3X",
+   "points": 10,
+   "kind": "event"
+  }
+ ],
+ "stats": [
+  {
+   "id": "bally-spelled",
+   "index": 0,
+   "name": "B-A-L-L-Y completions",
+   "kind": "counter"
+  },
+  {
+   "id": "drop-banks",
+   "index": 1,
+   "name": "Drop target banks cleared",
+   "kind": "counter"
+  },
+  {
+   "id": "hyperspace-loops",
+   "index": 2,
+   "name": "Hyperspace loops",
+   "kind": "counter"
+  },
+  {
+   "id": "skill-shots",
+   "index": 3,
+   "name": "Skill shots",
+   "kind": "counter"
+  },
+  {
+   "id": "missions-completed",
+   "index": 4,
+   "name": "Missions completed",
+   "kind": "counter"
+  },
+  {
+   "id": "best-bonus",
+   "index": 5,
+   "name": "Best end-of-ball bonus",
+   "kind": "max"
+  }
+ ],
+ "settings": [
+  {
+   "id": "free-play",
+   "index": 0,
+   "name": "Free play",
+   "group": "pricing",
+   "type": "bool",
+   "default": 0,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_FREEPLAY",
+    "eeprom": 101,
+    "variable": "FreePlayMode"
+   }
+  },
+  {
+   "id": "ball-save",
+   "index": 1,
+   "name": "Ball save",
+   "group": "game",
+   "type": "enum",
+   "unit": "s",
+   "values": [
+    {
+     "v": 0,
+     "label": "Off"
+    },
+    {
+     "v": 5,
+     "label": "5 s"
+    },
+    {
+     "v": 10,
+     "label": "10 s"
+    },
+    {
+     "v": 15,
+     "label": "15 s"
+    },
+    {
+     "v": 20,
+     "label": "20 s"
+    }
+   ],
+   "default": 15,
+   "difficulty": true,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_BALL_SAVE",
+    "eeprom": 100,
+    "variable": "BallSaveNumSeconds"
+   }
+  },
+  {
+   "id": "tilt-warnings",
+   "index": 2,
+   "name": "Tilt warnings",
+   "group": "game",
+   "type": "int",
+   "min": 0,
+   "max": 2,
+   "default": 2,
+   "difficulty": true,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_TILT_WARNINGS",
+    "eeprom": 104,
+    "variable": "MaxTiltWarnings"
+   }
+  },
+  {
+   "id": "music-volume",
+   "index": 3,
+   "name": "Music volume",
+   "group": "sound",
+   "type": "int",
+   "min": 0,
+   "max": 10,
+   "default": 10,
+   "liveSafe": true,
+   "operatorOnly": false,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_MUSIC_VOLUME",
+    "eeprom": 109,
+    "variable": "MusicVolume"
+   }
+  },
+  {
+   "id": "sfx-volume",
+   "index": 4,
+   "name": "Sound effects volume",
+   "group": "sound",
+   "type": "int",
+   "min": 0,
+   "max": 10,
+   "default": 10,
+   "liveSafe": true,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_SOUNDFX_VOLUME",
+    "eeprom": 108,
+    "variable": "SoundEffectsVolume"
+   }
+  },
+  {
+   "id": "callouts-volume",
+   "index": 5,
+   "name": "Callouts volume",
+   "group": "sound",
+   "type": "int",
+   "min": 0,
+   "max": 10,
+   "default": 10,
+   "liveSafe": true,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_CALLOUTS_VOLUME",
+    "eeprom": 111,
+    "variable": "CalloutsVolume"
+   }
+  },
+  {
+   "id": "balls-per-game",
+   "index": 6,
+   "name": "Balls per game",
+   "group": "game",
+   "type": "int",
+   "min": 3,
+   "max": 10,
+   "default": 3,
+   "difficulty": true,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_BALLS_PER_GAME",
+    "eeprom": 106,
+    "variable": "BallsPerGame"
+   }
+  },
+  {
+   "id": "tournament-scoring",
+   "index": 7,
+   "name": "Tournament scoring",
+   "group": "game",
+   "type": "bool",
+   "default": 0,
+   "tournamentMode": 1,
+   "difficulty": true,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_TOURNAMENT_MODE",
+    "eeprom": 107,
+    "variable": "TournamentScoring"
+   }
+  },
+  {
+   "id": "extra-ball-value",
+   "index": 8,
+   "name": "Extra ball value",
+   "group": "awards",
+   "type": "score",
+   "min": 0,
+   "max": 99999990,
+   "step": 10,
+   "default": 20000,
+   "difficulty": true,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_EXTRA_BALL_VALUE",
+    "eeprom": 160,
+    "variable": "ExtraBallValue"
+   }
+  },
+  {
+   "id": "special-value",
+   "index": 9,
+   "name": "Special value",
+   "group": "awards",
+   "type": "score",
+   "min": 0,
+   "max": 99999990,
+   "step": 10,
+   "default": 40000,
+   "difficulty": true,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_SPECIAL_VALUE",
+    "eeprom": 164,
+    "variable": "SpecialValue"
+   }
+  },
+  {
+   "id": "reset-hold-time",
+   "index": 10,
+   "name": "Credit button hold to reset a game",
+   "group": "game",
+   "type": "enum",
+   "values": [
+    {
+     "v": 0,
+     "label": "0 s"
+    },
+    {
+     "v": 1,
+     "label": "1 s"
+    },
+    {
+     "v": 2,
+     "label": "2 s"
+    },
+    {
+     "v": 3,
+     "label": "3 s"
+    },
+    {
+     "v": 99,
+     "label": "Never"
+    }
+   ],
+   "default": 2,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_RESET_DURING_GAME",
+    "eeprom": 118,
+    "variable": "TimeRequiredToResetGame"
+   }
+  },
+  {
+   "id": "replay-score-1",
+   "index": 11,
+   "name": "Replay score level 1",
+   "group": "awards",
+   "type": "score",
+   "min": 0,
+   "max": 99999990,
+   "step": 10,
+   "default": 200000,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_SCORE_LEVEL_1",
+    "variable": "AwardScores[0]"
+   }
+  },
+  {
+   "id": "replay-score-2",
+   "index": 12,
+   "name": "Replay score level 2",
+   "group": "awards",
+   "type": "score",
+   "min": 0,
+   "max": 99999990,
+   "step": 10,
+   "default": 400000,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_SCORE_LEVEL_2",
+    "variable": "AwardScores[1]"
+   }
+  },
+  {
+   "id": "replay-score-3",
+   "index": 13,
+   "name": "Replay score level 3",
+   "group": "awards",
+   "type": "score",
+   "min": 0,
+   "max": 99999990,
+   "step": 10,
+   "default": 600000,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_SCORE_LEVEL_3",
+    "variable": "AwardScores[2]"
+   }
+  },
+  {
+   "id": "score-award-replay",
+   "index": 14,
+   "name": "Score levels that award a replay",
+   "group": "awards",
+   "type": "flags",
+   "bits": [
+    {
+     "bit": 0,
+     "label": "Level 1"
+    },
+    {
+     "bit": 1,
+     "label": "Level 2"
+    },
+    {
+     "bit": 2,
+     "label": "Level 3"
+    }
+   ],
+   "default": 7,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_SCORE_AWARDS",
+    "eeprom": 105,
+    "variable": "ScoreAwardReplay"
+   }
+  },
+  {
+   "id": "scrolling-scores",
+   "index": 15,
+   "name": "Scrolling scores",
+   "group": "display",
+   "type": "bool",
+   "default": 1,
+   "liveSafe": true,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_SCROLLING_SCORES",
+    "eeprom": 110,
+    "variable": "ScrollingScores"
+   }
+  },
+  {
+   "id": "coins-per-credit-1",
+   "index": 16,
+   "name": "Coins per credit, chute 1",
+   "group": "pricing",
+   "type": "enum",
+   "values": [
+    {
+     "v": 0,
+     "label": "1 coin / 5 credits"
+    },
+    {
+     "v": 1,
+     "label": "1 coin / 4 credits"
+    },
+    {
+     "v": 2,
+     "label": "1 coin / 3 credits"
+    },
+    {
+     "v": 3,
+     "label": "1 coin / 2 credits"
+    },
+    {
+     "v": 4,
+     "label": "1 coin / 1 credit"
+    },
+    {
+     "v": 5,
+     "label": "2 coins / 3 credits"
+    },
+    {
+     "v": 6,
+     "label": "2 coins / 1 credit"
+    },
+    {
+     "v": 7,
+     "label": "3 coins / 1 credit"
+    },
+    {
+     "v": 8,
+     "label": "4 coins / 1 credit"
+    }
+   ],
+   "default": 4,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_CPC_1",
+    "variable": "CPCSelection[0]"
+   }
+  },
+  {
+   "id": "coins-per-credit-2",
+   "index": 17,
+   "name": "Coins per credit, chute 2",
+   "group": "pricing",
+   "type": "enum",
+   "values": [
+    {
+     "v": 0,
+     "label": "1 coin / 5 credits"
+    },
+    {
+     "v": 1,
+     "label": "1 coin / 4 credits"
+    },
+    {
+     "v": 2,
+     "label": "1 coin / 3 credits"
+    },
+    {
+     "v": 3,
+     "label": "1 coin / 2 credits"
+    },
+    {
+     "v": 4,
+     "label": "1 coin / 1 credit"
+    },
+    {
+     "v": 5,
+     "label": "2 coins / 3 credits"
+    },
+    {
+     "v": 6,
+     "label": "2 coins / 1 credit"
+    },
+    {
+     "v": 7,
+     "label": "3 coins / 1 credit"
+    },
+    {
+     "v": 8,
+     "label": "4 coins / 1 credit"
+    }
+   ],
+   "default": 4,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_CPC_2",
+    "variable": "CPCSelection[1]"
+   }
+  },
+  {
+   "id": "coins-per-credit-3",
+   "index": 18,
+   "name": "Coins per credit, chute 3",
+   "group": "pricing",
+   "type": "enum",
+   "values": [
+    {
+     "v": 0,
+     "label": "1 coin / 5 credits"
+    },
+    {
+     "v": 1,
+     "label": "1 coin / 4 credits"
+    },
+    {
+     "v": 2,
+     "label": "1 coin / 3 credits"
+    },
+    {
+     "v": 3,
+     "label": "1 coin / 2 credits"
+    },
+    {
+     "v": 4,
+     "label": "1 coin / 1 credit"
+    },
+    {
+     "v": 5,
+     "label": "2 coins / 3 credits"
+    },
+    {
+     "v": 6,
+     "label": "2 coins / 1 credit"
+    },
+    {
+     "v": 7,
+     "label": "3 coins / 1 credit"
+    },
+    {
+     "v": 8,
+     "label": "4 coins / 1 credit"
+    }
+   ],
+   "default": 4,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_CPC_3",
+    "variable": "CPCSelection[2]"
+   }
+  },
+  {
+   "id": "match-feature",
+   "index": 19,
+   "name": "Match feature",
+   "group": "features",
+   "type": "bool",
+   "default": 1,
+   "source": {
+    "menuId": "OM_BASIC_ADJ_IDS_MATCH_FEATURE",
+    "eeprom": 138,
+    "variable": "MatchFeature"
+   }
+  },
+  {
+   "id": "game-rules",
+   "index": 20,
+   "name": "Game rules",
+   "group": "game",
+   "type": "enum",
+   "values": [
+    {
+     "v": 1,
+     "label": "Easy"
+    },
+    {
+     "v": 2,
+     "label": "Medium"
+    },
+    {
+     "v": 3,
+     "label": "Hard"
+    },
+    {
+     "v": 4,
+     "label": "Progressive"
+    },
+    {
+     "v": 5,
+     "label": "Custom"
+    }
+   ],
+   "default": 2,
+   "difficulty": true,
+   "source": {
+    "eeprom": 137,
+    "variable": "GameRulesSelection"
+   }
+  },
+  {
+   "id": "trough-eject-strength",
+   "index": 21,
+   "name": "Outhole kicker strength",
+   "group": "service",
+   "type": "int",
+   "min": 3,
+   "max": 10,
+   "default": 4,
+   "requiresPresence": true,
+   "source": {
+    "menuId": "OM_GAME_ADJ_TROUGH_EJECT_STRENGTH",
+    "eeprom": 131,
+    "variable": "BallServeSolenoidStrength"
+   }
+  },
+  {
+   "id": "saucer-eject-strength",
+   "index": 22,
+   "name": "Saucer eject strength",
+   "group": "service",
+   "type": "int",
+   "min": 5,
+   "max": 15,
+   "default": 5,
+   "requiresPresence": true,
+   "source": {
+    "menuId": "OM_GAME_ADJ_SAUCER_EJECT_STRENGTH",
+    "eeprom": 134,
+    "variable": "SaucerSolenoidStrength"
+   }
+  },
+  {
+   "id": "app-starts",
+   "index": 23,
+   "name": "Starts from the app",
+   "group": "pricing",
+   "type": "enum",
+   "values": [
+    {
+     "v": 0,
+     "label": "Off"
+    },
+    {
+     "v": 1,
+     "label": "On"
+    }
+   ],
+   "default": 1,
+   "operatorOnly": true,
+   "source": {
+    "menuId": "OM_GAME_ADJ_APP_STARTS",
+    "eeprom": 139,
+    "variable": "AppStartsEnabled"
+   }
+  }
+ ],
+ "audits": [
+  {
+   "id": "total-plays",
+   "index": 0,
+   "name": "Total plays"
+  },
+  {
+   "id": "chute-1-coins",
+   "index": 1,
+   "name": "Chute 1 coins"
+  },
+  {
+   "id": "chute-2-coins",
+   "index": 2,
+   "name": "Chute 2 coins"
+  },
+  {
+   "id": "chute-3-coins",
+   "index": 3,
+   "name": "Chute 3 coins"
+  },
+  {
+   "id": "total-replays",
+   "index": 4,
+   "name": "Total replays"
+  },
+  {
+   "id": "high-score-beaten",
+   "index": 5,
+   "name": "High score beaten"
+  }
+ ],
+ "scoreSanity": {
+  "maxPerGame": 5000000,
+  "maxPerBall": 3000000,
+  "minGameMs": 30000,
+  "scoreQuantum": 10
+ },
+ "actions": [
+  {
+   "id": "lamp-test",
+   "name": "Lamp test",
+   "kind": "test",
+   "arg": {
+    "min": 0,
+    "max": 60,
+    "label": "Lamp (60 = all)"
+   },
+   "valueLabel": "Lamp",
+   "index": 0,
+   "valueList": "lamps"
+  },
+  {
+   "id": "display-test",
+   "name": "Display test",
+   "kind": "test",
+   "arg": {
+    "min": 0,
+    "max": 6,
+    "label": "Digit (0 = all)"
+   },
+   "valueLabel": "Digit",
+   "index": 1
+  },
+  {
+   "id": "solenoid-test",
+   "name": "Solenoid test",
+   "kind": "test",
+   "arg": {
+    "min": 0,
+    "max": 15,
+    "label": "Solenoid (0 = each in turn)"
+   },
+   "valueLabel": "Solenoid",
+   "index": 2,
+   "valueList": "solenoids"
+  },
+  {
+   "id": "switch-test",
+   "name": "Switch test",
+   "kind": "test",
+   "valueLabel": "Closures",
+   "index": 3,
+   "valueList": "switches"
+  },
+  {
+   "id": "sound-test",
+   "name": "Sound test",
+   "kind": "test",
+   "arg": {
+    "min": 1,
+    "max": 999,
+    "label": "Track"
+   },
+   "valueLabel": "Track",
+   "index": 4,
+   "valueList": "sounds"
+  },
+  {
+   "id": "eject-balls",
+   "name": "Eject all balls",
+   "kind": "oneshot",
+   "local": true,
+   "index": 5
+  },
+  {
+   "id": "clear-audits",
+   "name": "Clear all audits",
+   "kind": "oneshot",
+   "confirm": true,
+   "index": 6,
+   "valueLabel": "Plays before"
+  },
+  {
+   "id": "factory-defaults",
+   "name": "Restore factory defaults",
+   "kind": "oneshot",
+   "confirm": true,
+   "lock": true,
+   "index": 7
+  },
+  {
+   "id": "preset-easy",
+   "name": "Easy rules",
+   "kind": "oneshot",
+   "confirm": true,
+   "lock": true,
+   "index": 8
+  },
+  {
+   "id": "preset-medium",
+   "name": "Medium rules",
+   "kind": "oneshot",
+   "confirm": true,
+   "lock": true,
+   "index": 9
+  },
+  {
+   "id": "preset-hard",
+   "name": "Hard rules",
+   "kind": "oneshot",
+   "confirm": true,
+   "lock": true,
+   "index": 10
+  },
+  {
+   "id": "preset-progressive",
+   "name": "Progressive rules",
+   "kind": "oneshot",
+   "confirm": true,
+   "lock": true,
+   "index": 11
+  },
+  {
+   "id": "enter-diagnostics",
+   "name": "Enter diagnostics",
+   "kind": "oneshot",
+   "local": true,
+   "diagnostics": "enter",
+   "index": 12
+  },
+  {
+   "id": "exit-diagnostics",
+   "name": "Exit diagnostics",
+   "kind": "oneshot",
+   "local": true,
+   "diagnostics": "exit",
+   "index": 13
+  },
+  {
+   "id": "clear-credits",
+   "name": "Clear credits",
+   "kind": "oneshot",
+   "confirm": true,
+   "valueLabel": "Credits before",
+   "index": 14
+  }
+ ],
+ "lamps": [
+  {
+   "n": 0,
+   "name": "Bonus 1K"
+  },
+  {
+   "n": 1,
+   "name": "Bonus 2K"
+  },
+  {
+   "n": 2,
+   "name": "Bonus 3K"
+  },
+  {
+   "n": 3,
+   "name": "Bonus 4K"
+  },
+  {
+   "n": 4,
+   "name": "Bonus 5K"
+  },
+  {
+   "n": 5,
+   "name": "Bonus 6K"
+  },
+  {
+   "n": 6,
+   "name": "Bonus 7K"
+  },
+  {
+   "n": 7,
+   "name": "Bonus 8K"
+  },
+  {
+   "n": 8,
+   "name": "Bonus 9K"
+  },
+  {
+   "n": 9,
+   "name": "Bonus 10K"
+  },
+  {
+   "n": 10,
+   "name": "Bonus 20K"
+  },
+  {
+   "n": 13,
+   "name": "Drop target special, 3X bonus"
+  },
+  {
+   "n": 14,
+   "name": "Drop target 3X, 2X bonus"
+  },
+  {
+   "n": 15,
+   "name": "Drop target 2X"
+  },
+  {
+   "n": 16,
+   "name": "Hyper space 2K"
+  },
+  {
+   "n": 17,
+   "name": "Hyper space 4K"
+  },
+  {
+   "n": 18,
+   "name": "Hyper space 6K"
+  },
+  {
+   "n": 19,
+   "name": "Hyper space 8K"
+  },
+  {
+   "n": 20,
+   "name": "Hyper space 10K"
+  },
+  {
+   "n": 21,
+   "name": "Hyper space extra ball"
+  },
+  {
+   "n": 22,
+   "name": "Left middle inside lane"
+  },
+  {
+   "n": 23,
+   "name": "Left middle outside lane"
+  },
+  {
+   "n": 24,
+   "name": "'B' saucer"
+  },
+  {
+   "n": 25,
+   "name": "'A' saucer"
+  },
+  {
+   "n": 26,
+   "name": "'L' saucer (upper)"
+  },
+  {
+   "n": 27,
+   "name": "'L' saucer (lower)"
+  },
+  {
+   "n": 28,
+   "name": "'Y' saucer"
+  },
+  {
+   "n": 29,
+   "name": "Center target"
+  },
+  {
+   "n": 30,
+   "name": "Right flipper feeder lane"
+  },
+  {
+   "n": 31,
+   "name": "Left flipper feeder lane"
+  },
+  {
+   "n": 32,
+   "name": "'B' lane"
+  },
+  {
+   "n": 33,
+   "name": "'A' lane"
+  },
+  {
+   "n": 34,
+   "name": "'L' target (upper)"
+  },
+  {
+   "n": 35,
+   "name": "'L' target (lower)"
+  },
+  {
+   "n": 36,
+   "name": "'Y' target"
+  },
+  {
+   "n": 37,
+   "name": "Right outlane special"
+  },
+  {
+   "n": 38,
+   "name": "Left outlane special"
+  },
+  {
+   "n": 39,
+   "name": "'Y' center"
+  },
+  {
+   "n": 40,
+   "name": "Shoot again (backbox)"
+  },
+  {
+   "n": 41,
+   "name": "Match (backbox)"
+  },
+  {
+   "n": 42,
+   "name": "Same player shoots again (playfield)"
+  },
+  {
+   "n": 43,
+   "name": "Credit indicator (apron)"
+  },
+  {
+   "n": 44,
+   "name": "BALLY 10K"
+  },
+  {
+   "n": 45,
+   "name": "BALLY 25K"
+  },
+  {
+   "n": 46,
+   "name": "BALLY 50K"
+  },
+  {
+   "n": 47,
+   "name": "BALLY special"
+  },
+  {
+   "n": 48,
+   "name": "Ball in play (backbox)"
+  },
+  {
+   "n": 49,
+   "name": "High score to date (backbox)"
+  },
+  {
+   "n": 50,
+   "name": "Game over (backbox)"
+  },
+  {
+   "n": 51,
+   "name": "Tilt (backbox)"
+  },
+  {
+   "n": 52,
+   "name": "'B' center"
+  },
+  {
+   "n": 53,
+   "name": "'A' center"
+  },
+  {
+   "n": 54,
+   "name": "'L' left center"
+  },
+  {
+   "n": 55,
+   "name": "'L' right center"
+  },
+  {
+   "n": 56,
+   "name": "1st player up (backbox)"
+  },
+  {
+   "n": 57,
+   "name": "2nd player up (backbox)"
+  },
+  {
+   "n": 58,
+   "name": "3rd player up (backbox)"
+  },
+  {
+   "n": 59,
+   "name": "4th player up (backbox)"
+  },
+  {
+   "n": 60,
+   "name": "All lamps (flashing)"
+  }
+ ],
+ "switches": [
+  {
+   "n": 0,
+   "name": "Drop target D (bottom)"
+  },
+  {
+   "n": 1,
+   "name": "Drop target C"
+  },
+  {
+   "n": 2,
+   "name": "Drop target B"
+  },
+  {
+   "n": 3,
+   "name": "Drop target A (top)"
+  },
+  {
+   "n": 4,
+   "name": "Collect bonus lane (shooter lane)"
+  },
+  {
+   "n": 5,
+   "name": "Credit button (start)"
+  },
+  {
+   "n": 6,
+   "name": "Tilt"
+  },
+  {
+   "n": 7,
+   "name": "Outhole"
+  },
+  {
+   "n": 8,
+   "name": "Coin III (right)"
+  },
+  {
+   "n": 9,
+   "name": "Coin I (left)"
+  },
+  {
+   "n": 10,
+   "name": "Coin II (middle)"
+  },
+  {
+   "n": 15,
+   "name": "Slam"
+  },
+  {
+   "n": 17,
+   "name": "Top lower rollover button (hyper space)"
+  },
+  {
+   "n": 18,
+   "name": "Right flipper feeder lane"
+  },
+  {
+   "n": 19,
+   "name": "Left flipper feeder lane"
+  },
+  {
+   "n": 20,
+   "name": "Top left target"
+  },
+  {
+   "n": 21,
+   "name": "Top upper rollover button (hyper space)"
+  },
+  {
+   "n": 22,
+   "name": "Drop target & 3 10-pt rebounds"
+  },
+  {
+   "n": 23,
+   "name": "Center target"
+  },
+  {
+   "n": 24,
+   "name": "Left middle inside lane"
+  },
+  {
+   "n": 25,
+   "name": "Left middle outside lane"
+  },
+  {
+   "n": 26,
+   "name": "'Y' target"
+  },
+  {
+   "n": 27,
+   "name": "Lower 'L' target"
+  },
+  {
+   "n": 28,
+   "name": "Upper 'L' target"
+  },
+  {
+   "n": 29,
+   "name": "'A' rollover"
+  },
+  {
+   "n": 30,
+   "name": "'B' rollover"
+  },
+  {
+   "n": 31,
+   "name": "Saucer"
+  },
+  {
+   "n": 33,
+   "name": "Right outlane"
+  },
+  {
+   "n": 34,
+   "name": "Left outlane"
+  },
+  {
+   "n": 35,
+   "name": "Right slingshot"
+  },
+  {
+   "n": 36,
+   "name": "Left slingshot"
+  },
+  {
+   "n": 37,
+   "name": "Bottom thumper bumper"
+  },
+  {
+   "n": 38,
+   "name": "Right thumper bumper"
+  },
+  {
+   "n": 39,
+   "name": "Left thumper bumper"
+  }
+ ],
+ "solenoids": [
+  {
+   "n": 0,
+   "name": "Each coil in turn"
+  },
+  {
+   "n": 5,
+   "name": "Knocker"
+  },
+  {
+   "n": 6,
+   "name": "Outhole kicker (serves the ball)"
+  },
+  {
+   "n": 7,
+   "name": "Saucer"
+  },
+  {
+   "n": 8,
+   "name": "Left thumper bumper"
+  },
+  {
+   "n": 9,
+   "name": "Right thumper bumper"
+  },
+  {
+   "n": 10,
+   "name": "Bottom thumper bumper"
+  },
+  {
+   "n": 11,
+   "name": "Left slingshot"
+  },
+  {
+   "n": 12,
+   "name": "Right slingshot"
+  },
+  {
+   "n": 13,
+   "name": "Drop target reset"
+  },
+  {
+   "n": 15,
+   "name": "Flipper relay"
+  }
+ ],
+ "sounds": [
+  {
+   "n": 1,
+   "name": "New Game"
+  },
+  {
+   "n": 2,
+   "name": "Bumper Hit 1"
+  },
+  {
+   "n": 3,
+   "name": "Bumper Hit 2"
+  },
+  {
+   "n": 4,
+   "name": "Bumper Hit 3"
+  },
+  {
+   "n": 5,
+   "name": "Transporter"
+  },
+  {
+   "n": 6,
+   "name": "Photon Torpedo 1"
+  },
+  {
+   "n": 7,
+   "name": "Photon Torpedo 2"
+  },
+  {
+   "n": 8,
+   "name": "Photon Torpedo 3"
+  },
+  {
+   "n": 9,
+   "name": "Unlit Lamp 2"
+  },
+  {
+   "n": 10,
+   "name": "Sling Shot"
+  },
+  {
+   "n": 14,
+   "name": "Outlane Unlit"
+  },
+  {
+   "n": 15,
+   "name": "Shoot Again"
+  },
+  {
+   "n": 17,
+   "name": "Phaser 1"
+  },
+  {
+   "n": 18,
+   "name": "Phaser 2"
+  },
+  {
+   "n": 19,
+   "name": "Red Alert"
+  },
+  {
+   "n": 20,
+   "name": "Rotate Bally 1"
+  },
+  {
+   "n": 21,
+   "name": "Rotate Bally 2"
+  },
+  {
+   "n": 22,
+   "name": "Rotate Bally 3"
+  },
+  {
+   "n": 23,
+   "name": "Drop Target 1"
+  },
+  {
+   "n": 24,
+   "name": "Drop Target 2"
+  },
+  {
+   "n": 25,
+   "name": "Drop Target 3"
+  },
+  {
+   "n": 26,
+   "name": "Drop Target Complete"
+  },
+  {
+   "n": 28,
+   "name": "Add Credit 1"
+  },
+  {
+   "n": 29,
+   "name": "Add Credit 2"
+  },
+  {
+   "n": 30,
+   "name": "Add Credit 3"
+  },
+  {
+   "n": 31,
+   "name": "Top Target"
+  },
+  {
+   "n": 32,
+   "name": "Center Target"
+  },
+  {
+   "n": 33,
+   "name": "Animation Tick"
+  },
+  {
+   "n": 34,
+   "name": "Inner Lane"
+  },
+  {
+   "n": 35,
+   "name": "Tilt Warning"
+  },
+  {
+   "n": 36,
+   "name": "Tilt"
+  },
+  {
+   "n": 37,
+   "name": "Outlane"
+  },
+  {
+   "n": 38,
+   "name": "Warp"
+  },
+  {
+   "n": 39,
+   "name": "Spock: fascinating"
+  },
+  {
+   "n": 40,
+   "name": "Bonus 30K"
+  },
+  {
+   "n": 41,
+   "name": "Bonus Ks"
+  },
+  {
+   "n": 42,
+   "name": "Bonus Over"
+  },
+  {
+   "n": 43,
+   "name": "Extra Ball"
+  },
+  {
+   "n": 44,
+   "name": "Kicker Watch"
+  },
+  {
+   "n": 45,
+   "name": "Ball Over"
+  },
+  {
+   "n": 46,
+   "name": "Game Over"
+  },
+  {
+   "n": 47,
+   "name": "Machine Start"
+  },
+  {
+   "n": 48,
+   "name": "Skill Shot"
+  },
+  {
+   "n": 49,
+   "name": "Match Spin"
+  },
+  {
+   "n": 50,
+   "name": "Rollover"
+  },
+  {
+   "n": 51,
+   "name": "Placeholder Letter"
+  },
+  {
+   "n": 52,
+   "name": "Skill Shot Alt"
+  },
+  {
+   "n": 89,
+   "name": "Background Drone"
+  },
+  {
+   "n": 100,
+   "name": "Add Player 1"
+  },
+  {
+   "n": 101,
+   "name": "Add Player 2"
+  },
+  {
+   "n": 102,
+   "name": "Add Player 3"
+  },
+  {
+   "n": 103,
+   "name": "Add Player 4"
+  },
+  {
+   "n": 104,
+   "name": "Player 1 Up"
+  },
+  {
+   "n": 105,
+   "name": "Player 2 Up"
+  },
+  {
+   "n": 106,
+   "name": "Player 3 Up"
+  },
+  {
+   "n": 107,
+   "name": "Player 4 Up"
+  },
+  {
+   "n": 108,
+   "name": "Doomsday phase 1"
+  },
+  {
+   "n": 109,
+   "name": "Doomsday phase 2"
+  },
+  {
+   "n": 110,
+   "name": "Doomsday Complete"
+  },
+  {
+   "n": 201,
+   "name": "Background 1"
+  },
+  {
+   "n": 202,
+   "name": "Background 2"
+  },
+  {
+   "n": 203,
+   "name": "Background 3"
+  },
+  {
+   "n": 204,
+   "name": "Background 4"
+  },
+  {
+   "n": 205,
+   "name": "Background 5"
+  },
+  {
+   "n": 206,
+   "name": "Background 6"
+  },
+  {
+   "n": 220,
+   "name": "Doomsday intro music"
+  },
+  {
+   "n": 221,
+   "name": "Doomsday music, phase 1"
+  },
+  {
+   "n": 222,
+   "name": "Doomsday music, phase 2"
+  }
+ ]
+}
